@@ -13,15 +13,24 @@ public class FairCut {
         for (int i=0; i<n; i++) {
             a[i] = in.nextLong();
         }
+        Arrays.sort(a);
         long dp[] = new long[n];
         int I[] = new int[k];                   // I and J holds indices in array a.
         int J[] = new int[n-k];
         // initialize different sets of I and J arrays to consist all possibilities
-        for(int i=0; i<k; i++) {
-            I[i] = i;
+        if(k*2 > n)
+            k = n-k;                // this doesn't affect anything; changes perspective to the other person
+        for(int i = 0; i<k; i++) {
+            I[i] = i + n/2 - k/2;               // greedy choice; 
         }
-        for(int j=n-k-1; j>=0; j--) {
-            J[j] = j+k;
+        int c = 0;
+        for(int j=0; j<n; j++) {
+            if(c!=k)
+            if(j == I[c]) {
+                c++;        // one index in array (I) checked; check next index
+                continue;
+            }
+            J[j - c] = j;
         }
         
         long unfair = 0;
