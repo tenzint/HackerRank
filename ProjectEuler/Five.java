@@ -6,36 +6,35 @@ import java.util.regex.*;
 // https://www.hackerrank.com/contests/projecteuler/challenges/euler005
 
 /*
- * Works only when 2 <= N <= 11
+ * version 1: counting down from n to 2; works only when 2 <= N <= 11
+ * version 2: counting only the amount of prime factors using a HashMap<prime factor, power>
 */
 public class Five {                         // Smallest multiple
     
     static void smallestMultiple(int n){
-        long product = 1;
-        
-        Vector<Long> factors = new Vector<Long>();
-        for(int i=n; i>1; i--){                 // ignore the factor of 1
-            long factor = i;
-            long count = 0;
-            for(int j=0; j<factors.size(); j++) {
-                if(factors.get(j)%factor == 0){
-                    count++;
-                    /*
-                    if(count>1){
-                        factors.set(j, factors.get(j)/factor);
+        HashMap<Integer, Integer> primes = new HashMap<Integer, Integer>();
+        for(int i=2; i<=n; i++){
+            boolean isPrime = true;
+            int num = i, count = 0;
+            for(Map.Entry<Integer,Integer> prime : primes.entrySet()){
+                if(num%prime.getKey() == 0){
+                    isPrime = false;
+                    count = 0;
+                    while(num%prime.getKey() == 0){
+                        num /= prime.getKey();
+                        count++;
                     }
-                    */
+                    if(prime.getValue() < count)
+                        prime.setValue(count);
                 }
             }
-            if(count==0){
-                product *= (long)factor;
-                factors.add(factor);
-            } else if(count>1) {            // if count==1, then do nothing
-                //if(isPrime(factor))
-                     product /= (long)Math.pow(factor, count-1);
-                
+            if(isPrime){
+                primes.put(num, 1);
             }
-            //System.out.println(product + " count: " + count + " factor: " + factor);
+        }
+        long product = 1;
+        for(Map.Entry<Integer,Integer> entry : primes.entrySet()){
+            product *= (long)Math.pow((double)entry.getKey(), (double)entry.getValue());
         }
         System.out.println(product);
         return;

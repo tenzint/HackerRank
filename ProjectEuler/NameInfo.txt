@@ -1,9 +1,21 @@
-Name Info ---
+Name Info --- ProjectEuler.net username ===== "tenzin392"
 Project Euler - HackerRank (if no notes mentioned, then all test cases have been passed)
 
 One - Multiples Of 3 And 5 --- 
 Two - Even Fibonacci Sums --- 
 Three - Largest Prime Factor ---
+Four - largest palindrome under 'n' (6 digit number) ---
+Five - Smallest multiple ---
+Six - Square Sum Difference
+Seven - Nth Prime
+Eight - Largest series product
+Nine - Special Pythagorean Triplets --- 
+Ten - Summation of Primes --- last 2 test cases time out error (recommended to use sieve algorithm - basically a giant lookup table with boolean true for prime numbers)
+Eleven - Largest Product in a grid
+Twelve - 
+
+Quick link:
+https://www.hackerrank.com/contests/projecteuler/challenges/filters/page:16
 
 
 
